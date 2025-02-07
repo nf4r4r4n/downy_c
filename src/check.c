@@ -1,22 +1,39 @@
 #include <downy.h>
 
-static int  check_yt_dlp(void)
+static void free_split(char **array)
 {
-    char    *paths[] = {"/usr/local/bin/yt-dlp", "/usr/bin/yt-dlp", "/bin/yt-dlp", NULL};
-
-    for (int i = 0; paths[i]; i++)
-        if (access(paths[i], X_OK) == 0)
-            return (0);
-    return (-1);
+    if (array == NULL)
+        return ;
+    for (int i = 0; array[i]; i++)
+        free(array[i]);
+    free(array);
 }
 
-static int  check_ffmpeg(void)
+static int  command_exists(char *command)
 {
-    char    *paths[] = {"/usr/local/bin/ffmpeg", "/usr/bin/ffmpeg", "/bin/ffmpeg", NULL};
+    char    **paths = split(getenv("PATH"), ':');
 
+    if (paths == NULL)
+        return (-1);
     for (int i = 0; paths[i]; i++)
-        if (access(paths[i], X_OK) == 0)
+    {
+        char    *path = strjoin(strdup(paths[i]), command);
+
+        printf("[%s]\n", path);
+        if (path == NULL)
+        {
+            free_split(paths);
+            return (-1);
+        }
+        if (access(path, X_OK) == 0)
+        {
+            free(path);
+            free_split(paths);
             return (0);
+        }
+        free(path);
+    }
+    free_split(paths);
     return (-1);
 }
 
@@ -24,7 +41,7 @@ static int  check_ffmpeg(void)
 // return 0 on success, -1 on error
 int check_dependecies(void)
 {
-    if (check_yt_dlp() == -1 || check_ffmpeg() == -1)
+    if (command_exists("/yt-dlp") == -1 || command_exists("/ffmpeg") == -1)
         return (-1);
     return (0);
 }

@@ -19,8 +19,12 @@
 void    print_error(const char *msg);
 void    print_help(void);
 void    print_version(void);
+char	*strjoin(char *s1, char *s2);
 
 // check.c
 int     check_dependecies(void);
+
+// split.c
+char	**split(char const *str, char sep);
 
 #endif  //  DOWNY_H

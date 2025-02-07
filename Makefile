@@ -3,7 +3,7 @@ CFLAGS	=	-Wall -Wextra -Werror -g -O2
 INCLUDE	=	-I includes
 CC		=	gcc
 MAIN_SRC	=	main.c
-SRC_DIR	=	$(addprefix src/, utils.c check.c)
+SRC_DIR	=	$(addprefix src/, utils.c check.c split.c)
 SRCS	=	$(MAIN_SRC) $(SRC_DIR)
 OBJS	=	$(SRCS:.c=.o)
 
