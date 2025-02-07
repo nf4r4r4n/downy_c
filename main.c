@@ -20,11 +20,19 @@ int main(int argc, char **argv, char **envp)
     }
     else if (argc == 3)
     {
+        char    **paths = split(getenv("PATH"), ':');
+
+        if (paths == NULL)
+        {
+            print_error("An error occured");
+            free_split(paths);
+            return (1);
+        }
         if (check_dependecies() == -1)
         {
             print_error("You may install dependencies first: yt-dlp & ffmpeg");
             return (1);
-        }
+        }        
         if (strncmp(argv[1], "--audio", 7) == 0)
         {
             printf("AUDIO\n");

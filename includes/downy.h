@@ -20,11 +20,16 @@ void    print_error(const char *msg);
 void    print_help(void);
 void    print_version(void);
 char	*strjoin(char *s1, char *s2);
+void 	free_split(char **array);
 
 // check.c
-int     check_dependecies(void);
+int  	command_exists(char *command, char **paths);
+int     check_dependecies(char **paths);
 
 // split.c
 char	**split(char const *str, char sep);
+
+// execute.c
+void	execute_command(const)
 
 #endif  //  DOWNY_H

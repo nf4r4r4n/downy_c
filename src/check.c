@@ -1,15 +1,6 @@
 #include <downy.h>
 
-static void free_split(char **array)
-{
-    if (array == NULL)
-        return ;
-    for (int i = 0; array[i]; i++)
-        free(array[i]);
-    free(array);
-}
-
-static int  command_exists(char *command)
+int  command_exists(char *command, char **paths)
 {
     char    **paths = split(getenv("PATH"), ':');
 
@@ -39,9 +30,9 @@ static int  command_exists(char *command)
 
 // Check all dependencies
 // return 0 on success, -1 on error
-int check_dependecies(void)
+int check_dependecies(char **paths)
 {
-    if (command_exists("/yt-dlp") == -1 || command_exists("/ffmpeg") == -1)
+    if (command_exists("/yt-dlp", paths) == -1 || command_exists("/ffmpeg", paths) == -1)
         return (-1);
     return (0);
 }
