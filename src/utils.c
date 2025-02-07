@@ -55,3 +55,12 @@ char    *strjoin(char *s1, char *s2)
     free(s1);
     return (join);
 }
+
+void free_split(char **array)
+{
+    if (array == NULL)
+        return ;
+    for (int i = 0; array[i]; i++)
+        free(array[i]);
+    free(array);
+}
