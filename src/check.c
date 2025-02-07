@@ -1,16 +1,14 @@
 #include <downy.h>
 
+// Return the index of the command on success, -1 on error
 int  command_exists(char *command, char **paths)
 {
-    char    **paths = split(getenv("PATH"), ':');
-
     if (paths == NULL)
         return (-1);
     for (int i = 0; paths[i]; i++)
     {
         char    *path = strjoin(strdup(paths[i]), command);
 
-        printf("[%s]\n", path);
         if (path == NULL)
         {
             free_split(paths);
@@ -19,8 +17,7 @@ int  command_exists(char *command, char **paths)
         if (access(path, X_OK) == 0)
         {
             free(path);
-            free_split(paths);
-            return (0);
+            return (i);
         }
         free(path);
     }

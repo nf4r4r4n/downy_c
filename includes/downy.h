@@ -8,7 +8,7 @@
 # include <string.h>
 
 # ifndef DOWNY_VERSION
-#  define DOWNY_VERSION "5th Feb 2025"
+#  define DOWNY_VERSION "7th Feb 2025"
 # endif //  DOWNY_VERSION
 
 # ifndef DOWNY_CREATOR
@@ -30,6 +30,6 @@ int     check_dependecies(char **paths);
 char	**split(char const *str, char sep);
 
 // execute.c
-void	execute_command(const)
+int     execute_command(char **args);
 
 #endif  //  DOWNY_H

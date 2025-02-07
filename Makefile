@@ -1,9 +1,9 @@
 NAME	=	downy
-CFLAGS	=	-Wall -Wextra -Werror -g -O2
+CFLAGS	=	-Wall -Wextra -Werror -g -O3
 INCLUDE	=	-I includes
 CC		=	gcc
 MAIN_SRC	=	main.c
-SRC_DIR	=	$(addprefix src/, utils.c check.c split.c)
+SRC_DIR	=	$(addprefix src/, utils.c check.c split.c execute.c)
 SRCS	=	$(MAIN_SRC) $(SRC_DIR)
 OBJS	=	$(SRCS:.c=.o)
 
