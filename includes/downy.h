@@ -30,6 +30,6 @@ int     check_dependecies(char **paths);
 char	**split(char const *str, char sep);
 
 // execute.c
-int     execute_command(char **args);
+int     execute_command(char **args, char **envp);
 
 #endif  //  DOWNY_H

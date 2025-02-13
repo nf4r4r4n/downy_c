@@ -1,6 +1,6 @@
 #include <downy.h>
 
-int execute_command(char **args)
+int execute_command(char **args, char **envp)
 {
     int     status;
     pid_t   pid = fork();
@@ -12,7 +12,7 @@ int execute_command(char **args)
     }
     else if (pid == 0)
     {
-        if (execve(args[0], args, NULL) == -1)
+        if (execve(args[0], args, envp) == -1)
         {
             printf("[Error(child)] Executing command \"%s\"\n", args[0]);
             return (-1);
