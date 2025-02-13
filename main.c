@@ -38,7 +38,7 @@ int main(int argc, char **argv, char **envp)
 
         if (strncmp(argv[1], "--audio", 7) == 0)
         {
-            char    *args[] = {real_command,  "--extract-audio", "--audio-format", "mp3", argv[2], NULL};
+            char    *args[] = {real_command, "--extract-audio", "--audio-format", "mp3", argv[2], NULL};
 
             execute_command(args, envp);
             free_split(paths);
