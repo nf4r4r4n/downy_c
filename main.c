@@ -38,9 +38,9 @@ int main(int argc, char **argv, char **envp)
 
         if (strncmp(argv[1], "--audio", 7) == 0)
         {
-            char    *args[] = {real_command, "--extract-audio", "--audio-format", "mp3", argv[2], NULL};
+            char    *args[] = {real_command,  "--extract-audio", "--audio-format", "mp3", argv[2], NULL};
 
-            execute_command(args);
+            execute_command(args, envp);
             free_split(paths);
             free(real_command);
             return (0);
@@ -49,7 +49,7 @@ int main(int argc, char **argv, char **envp)
         {
             char    *args[] = {real_command, "--format", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best", argv[2], NULL};
 
-            execute_command(args);
+            execute_command(args, envp);
             free_split(paths);
             free(real_command);
             return (0);
